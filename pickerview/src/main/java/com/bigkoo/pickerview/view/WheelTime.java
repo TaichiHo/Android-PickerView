@@ -1,9 +1,7 @@
 package com.bigkoo.pickerview.view;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
+import android.content.Context;
+import android.view.View;
 
 import com.bigkoo.pickerview.R;
 import com.bigkoo.pickerview.TimePickerView.Type;
@@ -11,13 +9,16 @@ import com.bigkoo.pickerview.adapter.NumericWheelAdapter;
 import com.bigkoo.pickerview.lib.WheelView;
 import com.bigkoo.pickerview.listener.OnItemSelectedListener;
 
-import android.content.Context;
-import android.view.View;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class WheelTime {
 	public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private View view;
+
 	private WheelView wv_year;
 	private WheelView wv_month;
 	private WheelView wv_day;

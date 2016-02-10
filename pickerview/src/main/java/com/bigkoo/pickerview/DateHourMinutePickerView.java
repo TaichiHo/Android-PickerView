@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.view.BasePickerView;
+import com.bigkoo.pickerview.view.WheelDateTime;
 import com.bigkoo.pickerview.view.WheelTime;
 
 import java.text.ParseException;
@@ -13,21 +14,21 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Sai on 15/11/22.
+ * Created by Taichi1 on 2/10/16.
  */
-public class TimePickerView extends BasePickerView implements View.OnClickListener {
+public class DateHourMinutePickerView extends BasePickerView implements View.OnClickListener {
     public enum Type {
-        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH, DATE_HOUR_MINUTE
+        ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN, YEAR_MONTH, DATE_HOUR_MINUTE
     }// 四种选择模式，年月日时分，年月日，时分，月日时分
 
-    WheelTime wheelTime;
+    WheelDateTime wheelDateTime;
     private View btnSubmit, btnCancel;
     private TextView tvTitle;
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
     private OnTimeSelectListener timeSelectListener;
 
-    public TimePickerView(Context context, Type type) {
+    public DateHourMinutePickerView(Context context, Type type) {
         super(context);
 
         LayoutInflater.from(context).inflate(R.layout.pickerview_time, contentContainer);
@@ -42,7 +43,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         // ----时间转轮
         final View timepickerview = findViewById(R.id.timepicker);
-        wheelTime = new WheelTime(timepickerview, type);
+        wheelDateTime = new WheelDateTime(timepickerview);
 
         //默认选中当前时间
         Calendar calendar = Calendar.getInstance();
@@ -52,7 +53,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
-        wheelTime.setPicker(year, month, day, hours, minute);
+        wheelDateTime.setPicker(year, month, day, hours, minute);
 
     }
 
@@ -63,12 +64,13 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
      * @param endYear
      */
     public void setRange(int startYear, int endYear) {
-        wheelTime.setStartYear(startYear);
-        wheelTime.setEndYear(endYear);
+        wheelDateTime.setStartYear(startYear);
+        wheelDateTime.setEndYear(endYear);
     }
 
     /**
      * 设置选中时间
+     *
      * @param date
      */
     public void setTime(Date date) {
@@ -82,28 +84,8 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
-        wheelTime.setPicker(year, month, day, hours, minute);
+        wheelDateTime.setPicker(year, month, day, hours, minute);
     }
-
-//    /**
-//     * 指定选中的时间，显示选择器
-//     *
-//     * @param date
-//     */
-//    public void show(Date date) {
-//        Calendar calendar = Calendar.getInstance();
-//        if (date == null)
-//            calendar.setTimeInMillis(System.currentTimeMillis());
-//        else
-//            calendar.setTime(date);
-//        int year = calendar.get(Calendar.YEAR);
-//        int month = calendar.get(Calendar.MONTH);
-//        int day = calendar.get(Calendar.DAY_OF_MONTH);
-//        int hours = calendar.get(Calendar.HOUR_OF_DAY);
-//        int minute = calendar.get(Calendar.MINUTE);
-//        wheelDateTime.setPicker(year, month, day, hours, minute);
-//        show();
-//    }
 
     /**
      * 设置是否循环滚动
@@ -111,7 +93,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
      * @param cyclic
      */
     public void setCyclic(boolean cyclic) {
-        wheelTime.setCyclic(cyclic);
+        wheelDateTime.setCyclic(cyclic);
     }
 
     @Override
@@ -123,7 +105,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         } else {
             if (timeSelectListener != null) {
                 try {
-                    Date date = WheelTime.dateFormat.parse(wheelTime.getTime());
+                    Date date = WheelTime.dateFormat.parse(wheelDateTime.getTime());
                     timeSelectListener.onTimeSelect(date);
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -142,7 +124,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         this.timeSelectListener = timeSelectListener;
     }
 
-    public void setTitle(String title){
+    public void setTitle(String title) {
         tvTitle.setText(title);
     }
 }

@@ -1,10 +1,5 @@
 package com.bigkoo.pickerviewdemo;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +9,10 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerviewdemo.bean.ProvinceBean;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class MainActivity extends Activity {
@@ -34,7 +33,7 @@ public class MainActivity extends Activity {
         tvTime=(TextView) findViewById(R.id.tvTime);
         tvOptions=(TextView) findViewById(R.id.tvOptions);
         //时间选择器
-        pvTime = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);
+        pvTime = new TimePickerView(this, TimePickerView.Type.MONTH_DAY_HOUR_MIN);
         //控制时间范围
 //        Calendar calendar = Calendar.getInstance();
 //        pvTime.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));
@@ -170,6 +169,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 pvOptions.show();
+            }
+        });
+
+        vMasker.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pvOptions.dismiss();
+                pvTime.dismiss();
             }
         });
     }
