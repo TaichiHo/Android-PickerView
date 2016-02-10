@@ -10,10 +10,23 @@ import java.util.TimeZone;
 public class DateWheelAdapter implements WheelAdapter<DateWheelAdapter.MyDate> {
 
 
-    static class MyDate {
+    public static class MyDate {
         // The value of year, month and day conform to the one in Calendar class.
         int year;
         int month;
+
+        public int getDay() {
+            return day;
+        }
+
+        public int getYear() {
+            return year;
+        }
+
+        public int getMonth() {
+            return month;
+        }
+
         int day;
 
         public MyDate(int year, int month, int day) {

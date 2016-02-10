@@ -53,7 +53,7 @@ public class DateHourMinutePickerView extends BasePickerView implements View.OnC
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
-        wheelDateTime.setPicker(year, month, day, hours, minute);
+        wheelDateTime.setPicker(hours, minute);
 
     }
 
@@ -84,7 +84,7 @@ public class DateHourMinutePickerView extends BasePickerView implements View.OnC
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
-        wheelDateTime.setPicker(year, month, day, hours, minute);
+        wheelDateTime.setPicker(hours, minute);
     }
 
     /**

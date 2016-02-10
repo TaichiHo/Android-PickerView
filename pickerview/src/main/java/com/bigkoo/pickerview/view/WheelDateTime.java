@@ -11,8 +11,6 @@ import com.bigkoo.pickerview.lib.WheelView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class WheelDateTime {
@@ -48,21 +46,10 @@ public class WheelDateTime {
         setView(view);
     }
 
-    public void setPicker(int year, int month, int day) {
-        this.setPicker(year, month, day, 0, 0);
-    }
-
     /**
      * @Description: TODO 弹出日期时间选择器
      */
-    public void setPicker(int year, int month, int day, int h, int m) {
-        // 添加大小月月份并将其转换为list,方便之后的判断
-        String[] months_big = {"1", "3", "5", "7", "8", "10", "12"};
-        String[] months_little = {"4", "6", "9", "11"};
-
-        final List<String> list_big = Arrays.asList(months_big);
-        final List<String> list_little = Arrays.asList(months_little);
-
+    public void setPicker(int h, int m) {
         Context context = view.getContext();
 
         WheelView wv_year = (WheelView) view.findViewById(R.id.year);
@@ -118,7 +105,10 @@ public class WheelDateTime {
 
     public String getTime() {
         StringBuffer sb = new StringBuffer();
-        sb.append(wv_date.getAdapter().getItem(wv_date.getCurrentItem()).toString()).append(" ")
+        DateWheelAdapter.MyDate myDate = (DateWheelAdapter.MyDate) wv_date.getAdapter().getItem(wv_date.getCurrentItem());
+        sb.append(myDate.getYear()).append("-")
+                .append(myDate.getMonth()+1).append("-")
+                .append(myDate.getDay()).append(" ")
                 .append(wv_hours.getCurrentItem()).append(":")
                 .append(wv_mins.getCurrentItem());
         return sb.toString();
