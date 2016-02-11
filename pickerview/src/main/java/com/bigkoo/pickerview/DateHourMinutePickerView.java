@@ -28,7 +28,7 @@ public class DateHourMinutePickerView extends BasePickerView implements View.OnC
     private static final String TAG_CANCEL = "cancel";
     private OnTimeSelectListener timeSelectListener;
 
-    public DateHourMinutePickerView(Context context, Type type) {
+    public DateHourMinutePickerView(Context context) {
         super(context);
 
         LayoutInflater.from(context).inflate(R.layout.pickerview_time, contentContainer);

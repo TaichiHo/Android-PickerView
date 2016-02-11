@@ -1,5 +1,7 @@
 package com.bigkoo.pickerview.adapter;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -46,26 +48,33 @@ public class DateWheelAdapter implements WheelAdapter<DateWheelAdapter.MyDate> {
     // 365 days should be enough for now
     int lengthOfDates = 365;
 
-    public DateWheelAdapter(Calendar startFrom) {
-        new DateWheelAdapter(startFrom, lengthOfDates);
-    }
+//    public DateWheelAdapter(Calendar startFrom) {
+//        new DateWheelAdapter(startFrom, lengthOfDates);
+//    }
+//
+//    public DateWheelAdapter() {
+//        new DateWheelAdapter(Calendar.getInstance(TimeZone.getDefault()), lengthOfDates);
+//    }
+//
+//    public DateWheelAdapter(Calendar startFrom, int lengthOfDates) {
+//
+//        Calendar startDate = Calendar.getInstance(TimeZone.getDefault());
+//        startDate.setTime(startFrom.getTime());
+//        for (int i = 0; i < lengthOfDates; i++) {
+//            startDate.add(Calendar.DATE, 1);
+//            list.add(new MyDate(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
+//                    startDate.get(Calendar.DAY_OF_MONTH)));
+//        }
+//        Log.i("getItemCountAfterconstrutor", list.size() + "");
+//    }
 
-    public DateWheelAdapter() {
-        new DateWheelAdapter(Calendar.getInstance(), lengthOfDates);
-    }
-
-    public DateWheelAdapter(Calendar startFrom, int lengthOfDates) {
-        Calendar startDate = Calendar.getInstance(TimeZone.getDefault());
-        startDate.setTime(startFrom.getTime());
-        for (int i = 0; i < lengthOfDates; i++) {
-            startDate.add(Calendar.DATE, 1);
-            list.add(new MyDate(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
-                    startDate.get(Calendar.DAY_OF_MONTH)));
-        }
+    public DateWheelAdapter(ArrayList<MyDate> myDates) {
+        this.list = myDates;
     }
 
     @Override
     public int getItemsCount() {
+        Log.i("getItemCount", list.size() + "");
         return list.size();
     }
 

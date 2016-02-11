@@ -11,6 +11,9 @@ import com.bigkoo.pickerview.lib.WheelView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 
 public class WheelDateTime {
@@ -61,18 +64,25 @@ public class WheelDateTime {
 
         wv_date = (WheelView) view.findViewById(R.id.date);
         wv_date.setVisibility(View.VISIBLE);
-        wv_date.setAdapter(new DateWheelAdapter());
+        ArrayList<DateWheelAdapter.MyDate> list = new ArrayList<>();
+        Calendar startDate = Calendar.getInstance(TimeZone.getDefault());
+        startDate.setTime(Calendar.getInstance().getTime());
+        for (int i = 0; i < 365; i++) {
+            startDate.add(Calendar.DATE, 1);
+            list.add(new DateWheelAdapter.MyDate(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
+                    startDate.get(Calendar.DAY_OF_MONTH)));
+        }
+        wv_date.setAdapter(new DateWheelAdapter(list));
         wv_date.setCurrentItem(0);
 
 
         wv_hours = (WheelView) view.findViewById(R.id.hour);
         wv_hours.setAdapter(new NumericWheelAdapter(0, 23));
-        wv_hours.setLabel(context.getString(R.string.pickerview_hours));// 添加文字
+        wv_hours.setLabel(context.getString(R.string.pickerview_hours_minute));// 添加文字
         wv_hours.setCurrentItem(h);
 
         wv_mins = (WheelView) view.findViewById(R.id.min);
         wv_mins.setAdapter(new NumericWheelAdapter(0, 59));
-        wv_mins.setLabel(context.getString(R.string.pickerview_minutes));// 添加文字
         wv_mins.setCurrentItem(m);
 
 
@@ -107,7 +117,7 @@ public class WheelDateTime {
         StringBuffer sb = new StringBuffer();
         DateWheelAdapter.MyDate myDate = (DateWheelAdapter.MyDate) wv_date.getAdapter().getItem(wv_date.getCurrentItem());
         sb.append(myDate.getYear()).append("-")
-                .append(myDate.getMonth()+1).append("-")
+                .append(myDate.getMonth() + 1).append("-")
                 .append(myDate.getDay()).append(" ")
                 .append(wv_hours.getCurrentItem()).append(":")
                 .append(wv_mins.getCurrentItem());
