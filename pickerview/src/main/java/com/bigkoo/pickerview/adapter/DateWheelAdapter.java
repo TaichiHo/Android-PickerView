@@ -43,30 +43,7 @@ public class DateWheelAdapter implements WheelAdapter<DateWheelAdapter.MyDate> {
         }
     }
 
-    ArrayList<MyDate> list = new ArrayList<>();
-
-    // 365 days should be enough for now
-    int lengthOfDates = 365;
-
-//    public DateWheelAdapter(Calendar startFrom) {
-//        new DateWheelAdapter(startFrom, lengthOfDates);
-//    }
-//
-//    public DateWheelAdapter() {
-//        new DateWheelAdapter(Calendar.getInstance(TimeZone.getDefault()), lengthOfDates);
-//    }
-//
-//    public DateWheelAdapter(Calendar startFrom, int lengthOfDates) {
-//
-//        Calendar startDate = Calendar.getInstance(TimeZone.getDefault());
-//        startDate.setTime(startFrom.getTime());
-//        for (int i = 0; i < lengthOfDates; i++) {
-//            startDate.add(Calendar.DATE, 1);
-//            list.add(new MyDate(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
-//                    startDate.get(Calendar.DAY_OF_MONTH)));
-//        }
-//        Log.i("getItemCountAfterconstrutor", list.size() + "");
-//    }
+    ArrayList<MyDate> list;
 
     public DateWheelAdapter(ArrayList<MyDate> myDates) {
         this.list = myDates;

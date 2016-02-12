@@ -28,7 +28,7 @@ public class DateHourMinutePickerView extends BasePickerView implements View.OnC
     private static final String TAG_CANCEL = "cancel";
     private OnTimeSelectListener timeSelectListener;
 
-    public DateHourMinutePickerView(Context context) {
+    public DateHourMinutePickerView(Context context, Calendar startFromDate, int lengthOfPeriod) {
         super(context);
 
         LayoutInflater.from(context).inflate(R.layout.pickerview_time, contentContainer);
@@ -43,17 +43,12 @@ public class DateHourMinutePickerView extends BasePickerView implements View.OnC
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         // ----时间转轮
         final View timepickerview = findViewById(R.id.timepicker);
-        wheelDateTime = new WheelDateTime(timepickerview);
+        wheelDateTime = new WheelDateTime(timepickerview, startFromDate, lengthOfPeriod);
 
         //默认选中当前时间
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hours = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        wheelDateTime.setPicker(hours, minute);
+        wheelDateTime.setPicker(calendar);
 
     }
 
@@ -79,12 +74,7 @@ public class DateHourMinutePickerView extends BasePickerView implements View.OnC
             calendar.setTimeInMillis(System.currentTimeMillis());
         else
             calendar.setTime(date);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hours = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        wheelDateTime.setPicker(hours, minute);
+        wheelDateTime.setPicker(calendar);
     }
 
     /**

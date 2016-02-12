@@ -12,6 +12,7 @@ import com.bigkoo.pickerviewdemo.bean.ProvinceBean;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -35,7 +36,7 @@ public class MainActivity extends Activity {
         tvOptions = (TextView) findViewById(R.id.tvOptions);
         //时间选择器
 //        pvTime = new TimePickerView(this, TimePickerView.Type.MONTH_DAY_HOUR_MIN);
-        pvTime = new DateHourMinutePickerView(this);
+        pvTime = new DateHourMinutePickerView(this, Calendar.getInstance(), 365);
         //控制时间范围
 //        Calendar calendar = Calendar.getInstance();
 //        pvTime.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));

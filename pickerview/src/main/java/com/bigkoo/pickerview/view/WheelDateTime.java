@@ -34,11 +34,16 @@ public class WheelDateTime {
     private int startYear = DEFULT_START_YEAR;
     private int endYear = DEFULT_END_YEAR;
 
+    private int lengthOfPeriods;
+    private Calendar startFromDate;
 
-    public WheelDateTime(View view) {
+
+    public WheelDateTime(View view, Calendar startFromDate, int lengthOfPeriods) {
         super();
         this.view = view;
         type = Type.ALL;
+        this.lengthOfPeriods = lengthOfPeriods;
+        this.startFromDate = startFromDate;
         setView(view);
     }
 
@@ -52,7 +57,7 @@ public class WheelDateTime {
     /**
      * @Description: TODO 弹出日期时间选择器
      */
-    public void setPicker(int h, int m) {
+    public void setPicker(Calendar date) {
         Context context = view.getContext();
 
         WheelView wv_year = (WheelView) view.findViewById(R.id.year);
@@ -66,24 +71,32 @@ public class WheelDateTime {
         wv_date.setVisibility(View.VISIBLE);
         ArrayList<DateWheelAdapter.MyDate> list = new ArrayList<>();
         Calendar startDate = Calendar.getInstance(TimeZone.getDefault());
-        startDate.setTime(Calendar.getInstance().getTime());
-        for (int i = 0; i < 365; i++) {
+        startDate.setTime(startFromDate.getTime());
+        int currentIndex = 0;
+        for (int i = 0; i < lengthOfPeriods; i++) {
             startDate.add(Calendar.DATE, 1);
-            list.add(new DateWheelAdapter.MyDate(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH),
-                    startDate.get(Calendar.DAY_OF_MONTH)));
+            DateWheelAdapter.MyDate myDate = new DateWheelAdapter.MyDate(startDate.get(Calendar.YEAR),
+                    startDate.get(Calendar.MONTH),
+                    startDate.get(Calendar.DAY_OF_MONTH));
+            list.add(myDate);
+            if (date.get(Calendar.YEAR) == startDate.get(Calendar.YEAR)
+                    && date.get(Calendar.MONTH) == startDate.get(Calendar.MONTH)
+                    && date.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH)) {
+                currentIndex = i;
+            }
         }
         wv_date.setAdapter(new DateWheelAdapter(list));
-        wv_date.setCurrentItem(0);
+        wv_date.setCurrentItem(currentIndex);
 
 
         wv_hours = (WheelView) view.findViewById(R.id.hour);
         wv_hours.setAdapter(new NumericWheelAdapter(0, 23));
         wv_hours.setLabel(context.getString(R.string.pickerview_hours_minute));// 添加文字
-        wv_hours.setCurrentItem(h);
+        wv_hours.setCurrentItem(date.get(Calendar.HOUR_OF_DAY));
 
         wv_mins = (WheelView) view.findViewById(R.id.min);
         wv_mins.setAdapter(new NumericWheelAdapter(0, 59));
-        wv_mins.setCurrentItem(m);
+        wv_mins.setCurrentItem(date.get(Calendar.MINUTE));
 
 
         // 根据屏幕密度来指定选择器字体的大小(不同屏幕可能不同)
