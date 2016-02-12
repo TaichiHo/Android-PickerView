@@ -1,5 +1,11 @@
+Add the capability to edit date at one time instead of year, month, day.
+Please use DateHourMinutePickerView if you like it.
+![](https://lh3.googleusercontent.com/o_vcC8nHgP2TF-HTpIpPO_iT_Zc7A4yf93sv2BWIHSFACAay0QPkXACHfVmKIquCOPkeRrkAGc64xCBdIQVXHeE4CkFZYCBGlEwA72lcbCc7PWJTD4PiPm3oyN4jVFKQEpX_8wGwNnszUId5IhYcWqIzZygLddX_Z-4qLP2cfe2NAnFpRhhg9VYqFsxDMqzMiDbiBqVEzHPEZCH4X8mRXLbEi9uVJ-yfPwvZk8yfSuqNDEkFzIJ7P4jLjm0uKApcovEWbTf7yz66nMHOhp_I0TG6gWXIMJOHo2L9cV9W5HM69inL_oSFcs3j2YLCA8H6uvpGawuxe-Vs1XntouPrzb5jlj_6D5JzxVdbtAzDKx96AApKWAyXKYNYyS9J8-TZfrGaVgKKbofIOexD6lGjx7E-AoPVl5RzZhbNwUOoYwqFTimeZmcMZ_LIMcv6UJF6c8LS4L9UkT6o_Iz-EWI8LMz7Bn3KBI2OY1AFybQo0h_pq8GXJUZ-pLOKMPWPbGKrqYMobtMeDFfw770q2vc3MIa5bpcqxgbC88rwuaqPBV-G8yCC9lb5UhF5LVE2M8xOePL_=w714-h1140-no)
+
+
+=========
 PickerView (2.x系列)
-==========
+=========
 
 精仿iOS的PickerView控件，有时间选择和选项选择并支持一二三级联动效果   
 ——TimePickerView  时间选择器，支持年月日时分，年月日，年月，时分等格式   
@@ -7,7 +13,7 @@ PickerView (2.x系列)
 
 2.x是全新的3D效果，比1.x版本更加贴近iOS的效果，从外观细节上也得到了改善。api兼容1.x版本，只需要把依赖的版本号升级即可，几乎不用修改代码即可完成升级。
 
-####使用gradle 依赖:
+#### 使用gradle 依赖:
 ```java
    compile 'com.bigkoo:pickerview:2.0.8'
 ```

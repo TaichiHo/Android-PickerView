@@ -1,7 +1,5 @@
 package com.bigkoo.pickerview.adapter;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -51,7 +49,6 @@ public class DateWheelAdapter implements WheelAdapter<DateWheelAdapter.MyDate> {
 
     @Override
     public int getItemsCount() {
-        Log.i("getItemCount", list.size() + "");
         return list.size();
     }
 
